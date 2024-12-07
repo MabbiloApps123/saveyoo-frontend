@@ -1,0 +1,174 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Surprise Bag - Bakery",
+      "description": "A surprise bag of fresh bakery items including bread, pastries, and more.",
+      "category": "Bakery",
+      "price": {
+        "original": 15.0,
+        "discounted": 5.0,
+        "currency": "INR"
+      },
+      "availability": {
+        "quantity": 10,
+        "pickup_time": {
+          "start": "2024-11-22T14:00:00",
+          "end": "2024-11-22T18:00:00"
+        }
+      },
+      "store": {
+        "id": "101",
+        "name": "Downtown Bakery",
+        "address": {
+          "street": "123 Main St",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "600100",
+          "country": "IND"
+        },
+        "contact": {
+          "phone": "123-456-7890",
+          "email": "info@downtownbakery.com"
+        }
+      },
+      "image_url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+    },
+    {
+      "id": "2",
+      "name": "Surprise Bag - Sushi",
+      "description": "A mix of fresh sushi rolls, sashimi, and more.",
+      "category": "Sushi",
+      "price": {
+        "original": 25.0,
+        "discounted": 10.0,
+        "currency": "INR"
+      },
+      "availability": {
+        "quantity": 5,
+        "pickup_time": {
+          "start": "2024-11-22T12:00:00",
+          "end": "2024-11-22T15:00:00"
+        }
+      },
+      "store": {
+        "id": "102",
+        "name": "Sushi Heaven",
+        "address": {
+          "street": "456 Elm St",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "600101",
+          "country": "INR"
+        },
+        "contact": {
+          "phone": "987-654-3210",
+          "email": "contact@test.com"
+        }
+      },
+      "image_url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+    },
+    {
+      "id": "3",
+      "name": "Surprise Bag - Sushi",
+      "description": "A mix of fresh sushi rolls, sashimi, and more.",
+      "category": "Sushi",
+      "price": {
+        "original": 25.0,
+        "discounted": 10.0,
+        "currency": "INR"
+      },
+      "availability": {
+        "quantity": 5,
+        "pickup_time": {
+          "start": "2024-11-22T12:00:00",
+          "end": "2024-11-22T15:00:00"
+        }
+      },
+      "store": {
+        "id": "102",
+        "name": "Sushi Heaven",
+        "address": {
+          "street": "456 Elm St",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "600101",
+          "country": "INR"
+        },
+        "contact": {
+          "phone": "987-654-3210",
+          "email": "contact@test.com"
+        }
+      },
+      "image_url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+    },
+    {
+      "id": "4",
+      "name": "Surprise Bag - Sushi",
+      "description": "A mix of fresh sushi rolls, sashimi, and more.",
+      "category": "Sushi",
+      "price": {
+        "original": 25.0,
+        "discounted": 10.0,
+        "currency": "INR"
+      },
+      "availability": {
+        "quantity": 5,
+        "pickup_time": {
+          "start": "2024-11-22T12:00:00",
+          "end": "2024-11-22T15:00:00"
+        }
+      },
+      "store": {
+        "id": "102",
+        "name": "Sushi Heaven",
+        "address": {
+          "street": "456 Elm St",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "600101",
+          "country": "INR"
+        },
+        "contact": {
+          "phone": "987-654-3210",
+          "email": "contact@test.com"
+        }
+      },
+      "image_url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+    },
+    {
+      "id": "5",
+      "name": "Surprise Bag - Sushi",
+      "description": "A mix of fresh sushi rolls, sashimi, and more.",
+      "category": "Sushi",
+      "price": {
+        "original": 25.0,
+        "discounted": 10.0,
+        "currency": "INR"
+      },
+      "availability": {
+        "quantity": 5,
+        "pickup_time": {
+          "start": "2024-11-22T12:00:00",
+          "end": "2024-11-22T15:00:00"
+        }
+      },
+      "store": {
+        "id": "102",
+        "name": "Sushi Heaven",
+        "address": {
+          "street": "456 Elm St",
+          "city": "Springfield",
+          "state": "IL",
+          "postal_code": "600101",
+          "country": "INR"
+        },
+        "contact": {
+          "phone": "987-654-3210",
+          "email": "contact@test.com"
+        }
+      },
+      "image_url": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
+    }
+  ]
+}
