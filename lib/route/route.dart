@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:saveyoo/Screen/Browser/bloc/browser_bloc.dart';
+import 'package:saveyoo/Screen/Browser/browser_screen.dart';
 import 'package:saveyoo/Screen/Dashboard/bloc/dashboard_bloc.dart';
 import 'package:saveyoo/Screen/Dashboard/dashboard.dart';
 import 'package:saveyoo/Screen/LandingPage/bloc/landingpage_bloc.dart';
 import 'package:saveyoo/Screen/LandingPage/landingpage.dart';
 import 'package:saveyoo/Screen/Login/loginsuccess.dart';
 import 'package:saveyoo/Screen/OnboardingScreen/onboarding_screen.dart';
+import 'package:saveyoo/Screen/ProductDetails/bloc/productdetails_bloc.dart';
+import 'package:saveyoo/Screen/ProductDetails/productdetails.dart';
 import 'package:saveyoo/Screen/Register/bloc/register_bloc.dart';
 import 'package:saveyoo/Screen/Register/register.dart';
 import 'package:saveyoo/Screen/SeeAll/bloc/seeall_bloc.dart';
 import 'package:saveyoo/Screen/SeeAll/seeall_screen.dart';
 import 'package:saveyoo/Screen/SetLocation/bloc/landingpage_bloc.dart';
 import 'package:saveyoo/Screen/SetLocation/setlocation.dart';
+import 'package:saveyoo/Screen/SupermarketSeeAll/bloc/supermarketseeall_bloc.dart';
+import 'package:saveyoo/Screen/SupermarketSeeAll/supermarketseeall_screen.dart';
 
 import '../Screen/Login/bloc/login_bloc.dart';
 import '../Screen/Login/login.dart';
@@ -122,6 +128,41 @@ class Routes {
               )
             ],
             child: const SeeallScreen(),
+          ),
+        );
+
+      case supermarketseeallRoute:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<SupermarketSeeallBloc>(
+                create: (context) => SupermarketSeeallBloc(mContext: context),
+              )
+            ],
+            child: const SupermarketSeeallScreen(),
+          ),
+        );
+
+      case productdetailsRoute:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<ProductdetailsBloc>(
+                create: (context) => ProductdetailsBloc(mContext: context),
+              )
+            ],
+            child: const ProductdetailsScreen(),
+          ),
+        );
+      case browserRoute:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<BrowserBloc>(
+                create: (context) => BrowserBloc(mContext: context),
+              )
+            ],
+            child: const BrowserScreen(),
           ),
         );
       //

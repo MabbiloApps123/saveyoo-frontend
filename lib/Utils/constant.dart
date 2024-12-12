@@ -3,6 +3,7 @@ class Constant {
   static const String MLOGINSTATUS = 'mloginstatus';
   static const String MUSERNAME = 'musername';
   static const String MUSEREMAIL = 'museremail';
+  static const String MUSERACCESSTOKEN = 'maccesstoken';
   static const String MUSEREIMAGE = 'muserimage';
   static const String MEMPID = 'mempid';
   static const String MLATITUDE = 'mlatitude';

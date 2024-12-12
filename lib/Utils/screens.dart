@@ -8,6 +8,9 @@ const String landingRoute = 'landing';
 const String setlocationRoute = 'setlocation';
 
 const String seeallRoute = 'Seeall';
+const String supermarketseeallRoute = 'supermarketseeall';
+const String productdetailsRoute = 'productdetails';
+const String browserRoute = 'browser';
 const String dashboardRoute = 'dashboard';
 const String myCoursesRoute = 'myCourses';
 const String bookinganexpertRoute = 'bookinganexpert';

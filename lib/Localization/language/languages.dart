@@ -45,6 +45,7 @@ abstract class Languages {
   String get Delivery;
   String get Favourites;
   String get Profile;
+  String get Scan;
 
   String get settings;
   String get Accountdetails;
@@ -71,4 +72,7 @@ abstract class Languages {
   String get sortby;
   String get list;
   String get map;
+  String get seeallmsg;
+  String get recommendedmsg;
+  String get supermarkets;
 }

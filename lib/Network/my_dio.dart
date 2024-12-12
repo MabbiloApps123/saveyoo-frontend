@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -33,7 +34,7 @@ class MyDio {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "Authorization": mToken,
+
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",
       // "Access-Control-Allow-Headers":
@@ -83,15 +84,15 @@ class MyDio {
 
     dio.options.headers = {
       "Accept": "application/json",
-      "Authorization": mToken,
-      "Access-Control-Allow-Origin": "*",
-      "content-type": "multipart/form-data",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",
-      "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Headers":
-          "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale,pre-flight",
-      "Access-Control-Allow-Methods": "POST, OPTIONS,GET, HEAD",
+      'Content-Type': 'application/json',
+      // "Access-Control-Allow-Origin": "*",
+      // "content-type": "multipart/form-data",
+      // "Access-Control-Allow-Headers": "Content-Type",
+      // "Access-Control-Allow-Methods": "GET,PUT,PATCH,POST,DELETE",
+      // "Access-Control-Allow-Credentials": "true",
+      // "Access-Control-Allow-Headers":
+      //     "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale,pre-flight",
+      // "Access-Control-Allow-Methods": "POST, OPTIONS,GET, HEAD",
 
       /*{Accept: application/json, Authorization: token f3d40080905efdd:a9969f40877e947,
     Access-Control-Allow-Origin: *,
@@ -101,10 +102,13 @@ class MyDio {
     try {
       var response = await dio.post(
         endPoint,
-        data: formData ? FormData.fromMap(data ?? {}) : data,
+        //data: formData ? FormData.fromMap(data ?? {}) : jsonEncode(data),
+        data: data,
         queryParameters: queryParameters,
       );
-
+      String jsonData = jsonEncode(data);
+      print(jsonData);
+      printResponse('jsonData:    $jsonData');
       printResponse('url:    $endPoint');
       printResponse('header:    ${dio.options.headers}');
       printResponse('body:    $data');

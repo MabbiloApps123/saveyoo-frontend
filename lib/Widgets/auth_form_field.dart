@@ -90,7 +90,9 @@ class AuthFormField extends StatelessWidget {
         readOnly: mreadOnly,
         obscureText: obscureText,
         style: TextStyle(
-            fontSize: 16, fontFamily: 'OpenSansRegular', color: textColor),
+            fontSize: 16,
+            fontFamily: 'PlusJakartaSansRegular',
+            color: textColor),
         decoration: InputDecoration(
             prefixIcon: mBorderView
                 ? Padding(
@@ -104,7 +106,7 @@ class AuthFormField extends StatelessWidget {
                 : null,
             labelText: labelText,
             labelStyle: const TextStyle(
-                fontSize: 15,
+                fontSize: 16,
                 fontFamily: 'PlusJakartaSansRegular',
                 color: kGray),
             hintText: hintText,
@@ -117,7 +119,7 @@ class AuthFormField extends StatelessWidget {
             // floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: mBorderView
                 ? const EdgeInsets.all(10)
-                : const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                : const EdgeInsets.fromLTRB(15, 15, 15, 15),
             enabledBorder: mBorderView
                 ? OutlineInputBorder(
                     borderRadius: BorderRadius.circular(radius),

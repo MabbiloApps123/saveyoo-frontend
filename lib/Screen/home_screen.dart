@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:custom_gif_loading/custom_gif_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,8 +8,12 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'package:saveyoo/Screen/Browse/bloc/browse_bloc.dart';
-import 'package:saveyoo/Screen/Browse/browse_screen.dart';
+import 'package:saveyoo/Model/LoginResponse.dart';
+import 'package:saveyoo/Model/LoginSuccessResponse.dart';
+import 'package:saveyoo/Network/api_result_handler.dart';
+import 'package:saveyoo/Repository/login_repo.dart';
+import 'package:saveyoo/Screen/Browser/bloc/browser_bloc.dart';
+import 'package:saveyoo/Screen/Browser/browser_screen.dart';
 import 'package:saveyoo/Screen/Delivery/bloc/delivery_bloc.dart';
 import 'package:saveyoo/Screen/Delivery/delivery_screen.dart';
 import 'package:saveyoo/Screen/Favourites/bloc/favourites_bloc.dart';
@@ -18,10 +23,14 @@ import 'package:saveyoo/Screen/Home/home.dart';
 import 'package:saveyoo/Screen/Profile/bloc/profile_bloc.dart';
 import 'package:saveyoo/Screen/Profile/profile_screen.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
+import 'package:saveyoo/Utils/constant_methods.dart';
+import 'package:saveyoo/Utils/screens.dart';
+import 'package:saveyoo/Utils/utils.dart';
 import 'package:saveyoo/Widgets/app_bottom_navigation.dart';
-import 'package:saveyoo/localization/language/languages.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../utils/pref_manager.dart';
+import '../localization/language/languages.dart';
 
 class HomeScreen extends StatefulWidget {
   LatLng latLng;
@@ -37,9 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
   bool mIsLogin = false;
   Position? _currentPosition;
   String _currentAddress = "";
-  String mUserName = "";
-  String mUserEmail = "";
+  String mUserName = "Padhu";
+  String mUserEmail = "Padhunpn@gmail.com";
   String mUserImage = "";
+
+  final LoginRepo apiLoginRepo = LoginRepo();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -199,13 +210,16 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(_currentAddress,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: mPrimaryColor,
                       fontFamily: "PlusJakartaSansSemiBold",
                     )),
+                SizedBox(
+                  height: 2,
+                ),
                 Text("with in 14 Km",
                     style: const TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
                       color: mPrimaryColor,
                       fontFamily: "PlusJakartaSansRegular",
                     ))
@@ -216,9 +230,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
         backgroundColor: Colors.white, //elevation value of appbar
         foregroundColor: Colors.white,
-        actions: const [
+        actions: [
           //actions widget in appbar
-
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              "assets/ic_navuser.svg",
+              width: 30,
+              height: 30,
+              color: mPrimaryColor,
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          )
           //more widgets to place here
         ],
       ),
@@ -228,23 +253,26 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(0), bottomRight: Radius.circular(0)),
         ),
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
+            // Fixed Header
             UserAccountsDrawerHeader(
               decoration: const BoxDecoration(color: mSecondaryColor),
               accountName: Text(
                 mUserName,
                 //  _currentPosition!.latitude.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontFamily: 'PlusJakartaSansSemiBold',
+                  fontSize: 12.sp,
+                  color: Colors.white,
                 ),
               ),
               accountEmail: Text(
                 mUserEmail,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontFamily: 'PlusJakartaSansSemiBold',
+                  fontSize: 12.sp,
+                  color: Colors.white,
                 ),
               ),
               currentAccountPicture: CircleAvatar(
@@ -260,203 +288,229 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            // Scrollable Content
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                      child: Text(Languages.of(context)!.community,
+                          style: TextStyle(
+                              fontFamily: 'PlusJakartaSansSemiBold',
+                              fontSize: 12.sp,
+                              color: mGrey)),
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const sidemenuImage(
+                          menuicon: 'assets/nav_invitefriend.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Inviteyourfriends),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const sidemenuImage(
+                          menuicon: 'assets/nav_recommended.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Recommendastore),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading:
+                          const sidemenuImage(menuicon: 'assets/nav_store.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Signupyourstore),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Divider(
+                      color: mBorder,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                      child: Text(Languages.of(context)!.settings,
+                          style: TextStyle(
+                              fontFamily: 'PlusJakartaSansSemiBold',
+                              fontSize: 12.sp,
+                              color: mGrey)),
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const sidemenuImage(
+                          menuicon: 'assets/nav_account.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Accountdetails),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const sidemenuImage(
+                          menuicon: 'assets/nav_payment.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Paymentcards),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const sidemenuImage(
+                          menuicon: 'assets/nav_voucher.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Vouchers),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const sidemenuImage(
+                          menuicon: 'assets/nav_notification.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Notifications),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    Divider(
+                      color: mBorder,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                      child: Text(Languages.of(context)!.support,
+                          style: TextStyle(
+                              fontFamily: 'PlusJakartaSansSemiBold',
+                              fontSize: 12.sp,
+                              color: mGrey)),
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading:
+                          const sidemenuImage(menuicon: 'assets/nav_help.svg'),
+                      title: SidemenuText(
+                          menuname: Languages.of(context)!.Helpwithanorder),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    Divider(
+                      color: mBorder,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                      child: Text(Languages.of(context)!.others,
+                          style: TextStyle(
+                              fontFamily: 'PlusJakartaSansSemiBold',
+                              fontSize: 12.sp,
+                              color: mGrey)),
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading:
+                          const sidemenuImage(menuicon: 'assets/nav_legal.svg'),
+                      title:
+                          SidemenuText(menuname: Languages.of(context)!.Legal),
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      height: 0.3,
+                    ),
+                    Divider(
+                      color: mBorder,
+                    ),
+                    ListTile(
+                      minTileHeight: 50,
+                      leading: const Icon(
+                        Icons.logout,
+                      ),
+                      title:
+                          SidemenuText(menuname: Languages.of(context)!.logout),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: Text(Languages.of(context)!.appName),
+                            content: Text(Languages.of(context)!.appName),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Text(Languages.of(context)!.appName),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  Loading(mLoaderGif).start(context);
+                                  apiLoginRepo.logout("").then((value) async {
+                                    print(value);
 
-            // Divider(), //here is a divider
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-              child: Text(Languages.of(context)!.community,
-                  style: const TextStyle(
-                      fontFamily: 'PlusJakartaSansMedium',
-                      fontSize: 18,
-                      color: mGrey)),
-            ),
-            ListTile(
-              leading:
-                  const sidemenuImage(menuicon: 'assets/nav_invitefriend.svg'),
-              title: SidemenuText(
-                  menuname: Languages.of(context)!.Inviteyourfriends),
-              onTap: () {},
-            ),
+                                    if (value is ApiSuccess) {
+                                      Loading.stop();
+                                      if (LoginSuccessResponse.fromJson(
+                                                  value.data)
+                                              .statusCode ==
+                                          200) {
+                                        storageService.deleteAllItem();
 
-            ListTile(
-              leading:
-                  const sidemenuImage(menuicon: 'assets/nav_recommended.svg'),
-              title: SidemenuText(
-                  menuname: Languages.of(context)!.Recommendastore),
-              onTap: () {},
-            ),
+                                        Navigator.pushReplacementNamed(
+                                            context, loginRoute);
+                                      } else {
+                                        ErrorToast(
+                                            context: context,
+                                            text: LoginResponse.fromJson(
+                                                    value.data)
+                                                .message);
+                                      }
+                                    } else if (value is ApiFailure) {
+                                      Loading.stop();
+                                    }
+                                  });
 
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_store.svg'),
-              title: SidemenuText(
-                  menuname: Languages.of(context)!.Signupyourstore),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-
-            const Divider(),
-
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-              child: Text(Languages.of(context)!.settings,
-                  style: const TextStyle(
-                      fontFamily: 'PlusJakartaSansMedium',
-                      fontSize: 18,
-                      color: mGrey)),
-            ),
-
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_account.svg'),
-              title:
-                  SidemenuText(menuname: Languages.of(context)!.Accountdetails),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_payment.svg'),
-              title:
-                  SidemenuText(menuname: Languages.of(context)!.Paymentcards),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_voucher.svg'),
-              title: SidemenuText(menuname: Languages.of(context)!.Vouchers),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading:
-                  const sidemenuImage(menuicon: 'assets/nav_notification.svg'),
-              title:
-                  SidemenuText(menuname: Languages.of(context)!.Notifications),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            const Divider(),
-
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-              child: Text(Languages.of(context)!.support,
-                  style: const TextStyle(
-                      fontFamily: 'PlusJakartaSansMedium',
-                      fontSize: 18,
-                      color: mGrey)),
-            ),
-
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_help.svg'),
-              title: SidemenuText(
-                  menuname: Languages.of(context)!.Helpwithanorder),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_gowork.svg'),
-              title: SidemenuText(
-                  menuname: Languages.of(context)!.HowTooGoodToGoworks),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_join.svg'),
-              title: SidemenuText(
-                  menuname: Languages.of(context)!.JoinTooGoodToGo),
-              onTap: () {},
-            ),
-
-            const Divider(),
-
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
-              child: Text(Languages.of(context)!.others,
-                  style: const TextStyle(
-                      fontFamily: 'PlusJakartaSansMedium',
-                      fontSize: 18,
-                      color: mGrey)),
-            ),
-
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_hidden.svg'),
-              title:
-                  SidemenuText(menuname: Languages.of(context)!.HiddenStores),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-            ListTile(
-              leading: const sidemenuImage(menuicon: 'assets/nav_legal.svg'),
-              title: SidemenuText(menuname: Languages.of(context)!.Legal),
-              onTap: () {},
-            ),
-            const SizedBox(
-              height: 0.3,
-            ),
-
-            const Divider(),
-            ListTile(
-              leading: const Icon(
-                Icons.logout,
+                                  // ignore: use_build_context_synchronously
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(14),
+                                  child: Text(Languages.of(context)!.appName),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
               ),
-              title: SidemenuText(menuname: Languages.of(context)!.logout),
-              onTap: () {
-                // showDialog(
-                //   context: context,
-                //   builder: (ctx) => AlertDialog(
-                //     title: Text(Languages.of(context)!.appName),
-                //     content: Text(Languages.of(context)!.appName),
-                //     actions: <Widget>[
-                //       TextButton(
-                //         onPressed: () {
-                //           Navigator.of(ctx).pop();
-                //         },
-                //         child: Container(
-                //           padding: const EdgeInsets.all(14),
-                //           child: Text(Languages.of(context)!.appName),
-                //         ),
-                //       ),
-                //       TextButton(
-                //         onPressed: () async {
-                //           storageService.deleteAllItem();
-                //
-                //           // ignore: use_build_context_synchronously
-                //         },
-                //         child: Container(
-                //           padding: const EdgeInsets.all(14),
-                //           child: Text(Languages.of(context)!.appName),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // );
-              },
-            ),
-            const SizedBox(
-              height: 20,
             ),
           ],
         ),
@@ -473,8 +527,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 break;
               case 1:
                 return BlocProvider(
-                    create: (_) => BrowseBloc(mContext: context),
-                    child: BrowseScreen());
+                    create: (_) => BrowserBloc(mContext: context),
+                    child: BrowserScreen());
                 break;
               case 2:
                 return BlocProvider(
@@ -523,8 +577,9 @@ class sidemenuImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       menuicon,
-      width: 24,
-      height: 24,
+      color: mTextColor,
+      width: 18.sp,
+      height: 18.sp,
       //color: isSelected ? selectedColor : color,
     );
 
@@ -547,8 +602,8 @@ class SidemenuText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(menuname,
         style: TextStyle(
-            fontFamily: 'PlusJakartaSansRegular',
-            fontSize: 15,
-            color: mGreyDisable));
+            fontFamily: 'PlusJakartaSansMedium',
+            fontSize: 13.sp,
+            color: mTextColor));
   }
 }

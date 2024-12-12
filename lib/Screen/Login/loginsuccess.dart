@@ -41,11 +41,13 @@ class _LoginSuccessState extends State<LoginSuccess> {
     mLoginBloc = LoginBloc(mContext: context);
 
     return Scaffold(
+      backgroundColor: mBackgroundColor,
       body: BlocConsumer<LoginBloc, LoginStatus>(
         listener: (context, state) {},
         builder: (context, state) {
           return SafeArea(
               child: Scaffold(
+            backgroundColor: mBackgroundColor,
             body: Center(
               child: CustomScrollView(
                 slivers: [
@@ -58,51 +60,51 @@ class _LoginSuccessState extends State<LoginSuccess> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Image(
-                              width: 80,
-                              height: 80,
+                            const Image(
+                              width: 100,
+                              height: 100,
                               image: AssetImage(
                                 "assets/ic_mailsucess.png",
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(Languages.of(context)!.checkmail,
                                 style: const TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.black,
+                                  fontSize: 24,
+                                  color: mTextColor,
                                   fontFamily: "PlusJakartaSansSemiBold",
                                 )),
-                            SizedBox(
-                              height: 10,
+                            const SizedBox(
+                              height: 20,
                             ),
                             Text(Languages.of(context)!.sentmailto,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.grey,
+                                  color: mGreyDisable,
                                   fontFamily: "PlusJakartaSansRegular",
                                 )),
-                            SizedBox(
-                              height: 10,
+                            const SizedBox(
+                              height: 20,
                             ),
                             Text(widget.email,
                                 style: const TextStyle(
                                   fontSize: 18,
-                                  color: Colors.black,
+                                  color: mTextColor,
                                   fontFamily: "PlusJakartaSansSemiBold",
                                 )),
-                            SizedBox(
-                              height: 10,
+                            const SizedBox(
+                              height: 20,
                             ),
                             Text(Languages.of(context)!.checkbelowmail,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.grey,
+                                  color: mGreyDisable,
                                   fontFamily: "PlusJakartaSansRegular",
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Container(
@@ -119,62 +121,69 @@ class _LoginSuccessState extends State<LoginSuccess> {
                                 mImageView: false,
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
+                            const SizedBox(
+                              height: 30,
                             ),
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width / 2,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   PrimaryButton(
-                                      mButtonname:
-                                          Languages.of(context)!.submit,
-                                      onpressed: () {
-                                        if (codeController.text.isEmpty) {
-                                          ErrorToast(
-                                              context: context,
-                                              text: Languages.of(context)!
-                                                  .entercode);
-                                        } else {
-                                          mLoginBloc.login(
-                                              email: "", password: "");
+                                    mButtonname: Languages.of(context)!.submit,
+                                    onpressed: () {
+                                      if (codeController.text.isEmpty) {
+                                        ErrorToast(
+                                            context: context,
+                                            text: Languages.of(context)!
+                                                .entercode);
+                                      } else {
+                                        mLoginBloc.validateOTP(
+                                            email: widget.email,
+                                            otp: codeController.text);
 
-                                          // Navigator.push(
-                                          //   context,
-                                          //   MaterialPageRoute(
-                                          //       builder: (context) =>
-                                          //           HomeScreen()),
-                                          // );
-                                        }
-                                      },
-                                      mSelectcolor: mPrimaryColor,
-                                      mTextColor: Colors.white),
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //       builder: (context) =>
+                                        //           HomeScreen()),
+                                        // );
+                                      }
+                                    },
+                                    mSelectcolor: mPrimaryColor,
+                                    mTextColor: Colors.white,
+                                    mHeigth: 50,
+                                  ),
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Text(Languages.of(context)!.notgetcode,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontFamily: "PlusJakartaSansRegular",
+                                  fontSize: 18,
+                                  color: mTextColor,
+                                  fontFamily: "PlusJakartaSansSemiBold",
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
-                            Text(Languages.of(context)!.clickhere,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 16,
-                                  color: mPrimaryColor,
-                                  fontFamily: "PlusJakartaSansRegular",
-                                )),
+                            InkWell(
+                              onTap: () {
+                                mLoginBloc.resendOTP(email: widget.email);
+                              },
+                              child: Text(Languages.of(context)!.clickhere,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 20,
+                                    color: mPrimaryColor,
+                                    fontFamily: "PlusJakartaSansSemiBold",
+                                  )),
+                            )
                           ],
                         ),
                       ),

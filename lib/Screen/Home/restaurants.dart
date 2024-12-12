@@ -19,7 +19,7 @@ class Restaurants extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final colorScheme = Theme.of(context).colorScheme;
-    const height = 270.0;
+    const height = 255.0;
 
     return Column(
       children: [
@@ -30,7 +30,7 @@ class Restaurants extends StatelessWidget {
             Navigator.pushReplacementNamed(context, seeallRoute);
           },
         ),
-        SizedBox(
+        Container(
           height: height,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,

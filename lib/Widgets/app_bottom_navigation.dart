@@ -70,18 +70,18 @@ class BottomNavigation extends StatelessWidget {
             isSelected: item.selectedIndex == 1,
           ),
           tabItem(
+            title: Languages.of(context)!.Scan,
+            assetPath: 'assets/ic_scan.svg',
+            isSelected: item.selectedIndex == 2,
+          ),
+          tabItem(
             title: Languages.of(context)!.Delivery,
             assetPath: 'assets/ic_delivery.svg',
-            isSelected: item.selectedIndex == 2,
+            isSelected: item.selectedIndex == 3,
           ),
           tabItem(
             title: Languages.of(context)!.Favourites,
             assetPath: 'assets/ic_favorite.svg',
-            isSelected: item.selectedIndex == 3,
-          ),
-          tabItem(
-            title: Languages.of(context)!.Profile,
-            assetPath: 'assets/ic_profile.svg',
             isSelected: item.selectedIndex == 4,
           ),
         ];

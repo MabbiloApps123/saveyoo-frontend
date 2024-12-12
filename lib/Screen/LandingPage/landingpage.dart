@@ -57,80 +57,36 @@ class _LandingpageState extends State<Landingpage> {
                 child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/landingpagebg.png'),
-                  fit: BoxFit
-                      .cover, // Adjusts how the image should be fitted within the container
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconwithButton(
+                      mButtonname: Languages.of(context)!.maillogin,
+                      onpressed: () {
+                        Navigator.pushReplacementNamed(context, loginRoute);
+                      },
+                      icon: 'assets/ic_mail.png',
+                      mSelectcolor: mPrimaryColor,
+                      mTextColor: Colors.white,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    IconwithButton(
+                      mButtonname: Languages.of(context)!.gmaillogin,
+                      onpressed: () {},
+                      icon: 'assets/ic_google.png',
+                      mSelectcolor: mPrimaryColor,
+                      mTextColor: Colors.white,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-              ),
-              child: Stack(
-                children: [
-                  const Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Get Started with Yummy",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'PlusJakartaSansExtraBold',
-                            fontSize: 26,
-                          ),
-                        ),
-                        Text(
-                          "Test message",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'PlusJakartaSansRegular',
-                            fontSize: 16,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-
-                  // Positioned button at the bottom
-                  Positioned(
-                    left: 16,
-                    right: 16,
-                    bottom: 32,
-                    child: Column(
-                      children: [
-                        IconwithButton(
-                          mButtonname: Languages.of(context)!.maillogin,
-                          onpressed: () {
-                            Navigator.pushReplacementNamed(context, loginRoute);
-                          },
-                          icon: 'assets/ic_mail.png',
-                          mSelectcolor: mPrimaryColor,
-                          mTextColor: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        IconwithButton(
-                          mButtonname: Languages.of(context)!.gmaillogin,
-                          onpressed: () {},
-                          icon: 'assets/ic_google.png',
-                          mSelectcolor: mPrimaryColor,
-                          mTextColor: Colors.white,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        IconwithButton(
-                          mButtonname: Languages.of(context)!.applelogin,
-                          onpressed: () {},
-                          icon: 'assets/ic_apple.png',
-                          mSelectcolor: mPrimaryColor,
-                          mTextColor: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
               ), // Replace with your child widget
             ));
           } else if (state is GetLandingpageNointernetState) {

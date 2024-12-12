@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saveyoo/Model/ProductsResponse.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
+import 'package:saveyoo/Utils/screens.dart';
 
 class RestaurantPreviewCard extends StatelessWidget {
   const RestaurantPreviewCard({
@@ -18,10 +19,12 @@ class RestaurantPreviewCard extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacementNamed(context, productdetailsRoute);
+      },
       child: Container(
         width: size.width,
-        margin: const EdgeInsets.only(bottom: 20.0, right: 8.0),
+        margin: const EdgeInsets.only(bottom: 5, right: 8.0),
         decoration: BoxDecoration(
           border: Border.all(color: mBorder, width: 1),
           borderRadius: BorderRadius.circular(8.0),
@@ -50,6 +53,7 @@ class RestaurantPreviewCard extends StatelessWidget {
                 const Positioned(
                   left: 8.0,
                   child: Chip(
+                    backgroundColor: mPrimaryColor,
                     side: BorderSide.none,
                     labelPadding: EdgeInsets.zero,
                     label: Text(
@@ -57,7 +61,7 @@ class RestaurantPreviewCard extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: 'PlusJakartaSansRegular',
                           fontSize: 12,
-                          color: Colors.black),
+                          color: Colors.white),
                     ),
                   ),
                 ),
@@ -66,7 +70,7 @@ class RestaurantPreviewCard extends StatelessWidget {
                   child: Chip(
                     side: BorderSide.none,
                     labelPadding: EdgeInsets.zero,
-                    backgroundColor: mBorder,
+                    backgroundColor: mPrimaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(30.0), // Custom radius
@@ -79,47 +83,47 @@ class RestaurantPreviewCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: 10,
-                  left: 10,
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        child: CircleAvatar(
-                          radius: 30,
-                          child: ClipOval(
-                            child: Image.network(
-                              "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Carrefour Market",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontFamily: 'PlusJakartaSansMedium',
-                                  fontSize: 16,
-                                  color: Colors.black)),
-                          Text("Tervuren",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontFamily: 'PlusJakartaSansMedium',
-                                  fontSize: 16,
-                                  color: Colors.black))
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                // Positioned(
+                //   bottom: 10,
+                //   left: 10,
+                //   child: Row(
+                //     children: [
+                //       CircleAvatar(
+                //         radius: 30,
+                //         child: CircleAvatar(
+                //           radius: 30,
+                //           child: ClipOval(
+                //             child: Image.network(
+                //               "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                //               fit: BoxFit.cover,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //       const SizedBox(width: 10),
+                //       const Column(
+                //         mainAxisAlignment: MainAxisAlignment.center,
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text("Carrefour Market",
+                //               maxLines: 1,
+                //               overflow: TextOverflow.ellipsis,
+                //               style: TextStyle(
+                //                   fontFamily: 'PlusJakartaSansMedium',
+                //                   fontSize: 16,
+                //                   color: Colors.black)),
+                //           Text("Tervuren",
+                //               maxLines: 1,
+                //               overflow: TextOverflow.ellipsis,
+                //               style: TextStyle(
+                //                   fontFamily: 'PlusJakartaSansMedium',
+                //                   fontSize: 16,
+                //                   color: Colors.black))
+                //         ],
+                //       )
+                //     ],
+                //   ),
+                // ),
               ],
             ),
             Padding(

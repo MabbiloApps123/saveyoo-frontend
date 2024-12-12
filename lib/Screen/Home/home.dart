@@ -10,8 +10,10 @@ import 'package:saveyoo/Screen/Home/bloc/home_bloc.dart';
 import 'package:saveyoo/Screen/Home/bloc/home_event.dart';
 import 'package:saveyoo/Screen/Home/bloc/home_state.dart';
 import 'package:saveyoo/Screen/Home/restaurants.dart';
+import 'package:saveyoo/Screen/Home/supermarket.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
 import 'package:saveyoo/Utils/constant_methods.dart';
+import 'package:saveyoo/Widgets/primary_button.dart';
 import 'package:saveyoo/localization/language/languages.dart';
 
 import '../../Widgets/no_internet.dart';
@@ -92,71 +94,150 @@ class _HomepageState extends State<Homepage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
-                      SizedBox(
-                        height: 45,
+                      Container(
                         child: Center(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Search...',
-                              prefixIcon: const Icon(
-                                Icons.search,
-                                color: kGray,
+                          child: SizedBox(
+                            width: MediaQuery.of(context)
+                                .size
+                                .width, // Adjust width to fit the screen
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Search...',
+                                prefixIcon: const Icon(
+                                  Icons.search,
+                                  color: kGray,
+                                ),
+                                border: const OutlineInputBorder(),
+                                // Border when not focused
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: mBorder, width: 1.5),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                // Border when focused
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: mBorder, width: 1.5),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                hintStyle: TextStyle(
+                                  color: mGreyDisable,
+                                  fontFamily: 'PlusJakartaSansRegular',
+                                  fontSize: 15,
+                                ),
                               ),
-                              border: const OutlineInputBorder(),
-                              // Border when not focused
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: mBorder, width: 1.5),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              // Border when focused
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: mBorder, width: 1.5),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              hintStyle: TextStyle(
-                                color: mGreyDisable,
+                              style: const TextStyle(
+                                color: mGrey,
                                 fontFamily: 'PlusJakartaSansRegular',
                                 fontSize: 15,
                               ),
+                              onChanged: (query) {
+                                setState(() {
+                                  _searchQuery = query;
+                                });
+                              },
                             ),
-                            style: const TextStyle(
-                              color: mGrey,
-                              fontFamily: 'PlusJakartaSansRegular',
-                              fontSize: 15,
-                            ),
-                            onChanged: (query) {
-                              setState(() {
-                                _searchQuery = query;
-                              });
-                            },
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Restaurants(
                           mProduct: items,
                           title: Languages.of(context)!.savelate,
                           seeall: Languages.of(context)!.seeall),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Restaurants(
                           mProduct: items,
                           title: Languages.of(context)!.SurpriseBags,
                           seeall: Languages.of(context)!.seeall),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Restaurants(
                           mProduct: items,
                           title: Languages.of(context)!.collectnow,
                           seeall: Languages.of(context)!.seeall),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Supermarket(
+                          mProduct: items,
+                          title: Languages.of(context)!.supermarkets,
+                          seeall: Languages.of(context)!.seeall),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Restaurants(
+                          mProduct: items,
+                          title: Languages.of(context)!.collectnow,
+                          seeall: Languages.of(context)!.seeall),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: mBorder, width: 1),
+                          borderRadius: BorderRadius.circular(8),
+                          image: const DecorationImage(
+                            image: AssetImage(
+                                'assets/dummy1.jpeg'), // Replace with your image path
+                            fit: BoxFit
+                                .cover, // Adjusts how the image fits the container
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Support a local charity",
+                                    style: TextStyle(
+                                      fontFamily: 'PlusJakartaSansSemiBold',
+                                      fontSize: 28,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 10,
+                              right: 10,
+                              child: SizedBox(
+                                width: 200,
+                                child: PrimaryButton(
+                                  mButtonname: "Donate",
+                                  onpressed: () {},
+                                  mSelectcolor: Colors.white,
+                                  mTextColor: mPrimaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Restaurants(
+                          mProduct: items,
+                          title: Languages.of(context)!.collectnow,
+                          seeall: Languages.of(context)!.seeall),
+                      const SizedBox(
+                        height: 30,
+                      ),
                     ],
                   ),
                 ),

@@ -8,8 +8,8 @@ class IconwithButton extends StatelessWidget {
     required this.mSelectcolor,
     required this.mTextColor,
     required this.icon,
-    this.mFontSize = 18,
-    this.mHeigth = 50,
+    this.mFontSize = 20,
+    this.mHeigth = 55,
     this.radius = 30,
   });
 

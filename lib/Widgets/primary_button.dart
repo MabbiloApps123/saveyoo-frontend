@@ -7,7 +7,7 @@ class PrimaryButton extends StatelessWidget {
     required this.onpressed,
     required this.mSelectcolor,
     required this.mTextColor,
-    this.mFontSize = 18,
+    this.mFontSize = 20,
     this.mHeigth = 45,
     this.radius = 30,
   });

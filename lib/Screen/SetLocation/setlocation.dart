@@ -18,6 +18,7 @@ import 'package:saveyoo/Widgets/primary_button.dart';
 import 'package:saveyoo/localization/language/languages.dart';
 import 'package:saveyoo/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Widgets/no_internet.dart';
 import '../../utils/pref_manager.dart';
@@ -73,7 +74,42 @@ class _SetLocationState extends State<SetLocation> {
     }
   }
 
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location services are disabled. Please enable the services')));
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
+  }
+
   Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission();
+
+    if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) async {
       setState(
@@ -106,6 +142,7 @@ class _SetLocationState extends State<SetLocation> {
             Loading.stop();
             return SafeArea(
                 child: Container(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
 
@@ -129,9 +166,9 @@ class _SetLocationState extends State<SetLocation> {
                         ),
                         Text(Languages.of(context)!.findbag,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 22,
-                              color: mPrimaryColor,
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: mTextColor,
                               fontFamily: "PlusJakartaSansSemiBold",
                             )),
                       ],
@@ -147,9 +184,11 @@ class _SetLocationState extends State<SetLocation> {
                       children: [
                         PrimaryButton(
                           mButtonname: Languages.of(context)!.mycurrentlocation,
+                          mFontSize: 15.sp,
                           onpressed: () {
                             if (_currentPosition == null) {
-                              SucessToast(
+                              _getCurrentPosition();
+                              ErrorToast(
                                   context: context,
                                   text: "Please wait.Getting your location");
                             } else {
@@ -167,9 +206,10 @@ class _SetLocationState extends State<SetLocation> {
                           },
                           mSelectcolor: mPrimaryColor,
                           mTextColor: Colors.white,
+                          mHeigth: 50,
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
                         GestureDetector(
                           onTap: () {
@@ -178,8 +218,8 @@ class _SetLocationState extends State<SetLocation> {
                           },
                           child: Text(
                             Languages.of(context)!.selectlocation,
-                            style: const TextStyle(
-                              fontSize: 16,
+                            style: TextStyle(
+                              fontSize: 15.sp,
                               color: mPrimaryColor,
                               fontFamily: "PlusJakartaSansSemiBold",
                             ),

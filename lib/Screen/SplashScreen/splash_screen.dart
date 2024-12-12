@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:custom_gif_loading/custom_gif_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:saveyoo/Screen/home_screen.dart';
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> loadPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     onboardstatus = prefs.getInt(Constant.MONBOARDSCREEN) ?? 0;
-    mIsLogin = await storageService.getBool(Constant.MLOGINSTATUS) ?? false;
+    // mIsLogin = await storageService.getBool(Constant.MLOGINSTATUS) ?? false;
   }
 
   // Future<bool> _handleLocationPermission() async {
@@ -206,9 +207,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       child: Center(
                         child: Text(
                           "© ${getyear.year} Saveyoo1. All Rights Reserved",
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontFamily: 'PlusJakartaSansSemiBold',
-                              fontSize: 18.0,
+                              fontSize: 16.sp,
                               color: mPrimaryColor),
                           // TextStyle
                         ),
@@ -223,13 +224,15 @@ class _SplashScreenState extends State<SplashScreen> {
             return SafeArea(
               child: Stack(
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: Image(
+                        height: MediaQuery.of(context).size.height / 3,
+                        width: MediaQuery.of(context).size.width / 2,
                         image: AssetImage(
-                          "assets/splashicon.png",
+                          "assets/app_icon.png",
                         ),
                       ),
                     ),
@@ -276,6 +279,7 @@ class _SplashScreenState extends State<SplashScreen> {
         print("AAA");
         Navigator.pushReplacementNamed(context, onboardingRoute);
       } else {
+        // Navigator.pushReplacementNamed(context, onboardingRoute);
         if (mIsLogin) {
           //ErrorToast(context: context, text: mIsLogin.toString());
           // Navigator.pushReplacementNamed(context, setlocationRoute);

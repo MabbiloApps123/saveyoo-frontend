@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-const mPrimaryColor = Color(0xFF065532);
-const mSecondaryColor = Color(0xFF61B340);
+const mPrimaryColor = Color(0xFF1C753D);
+const mSecondaryColor = Color(0xFF8BC43F);
 const Color kBlack = Color(0xFF000000);
 const Color kGray = Color(0xFF969696);
 const Color mGreyFour = Color(0xffC6CED9);
 const Color kForgotpwd = Color(0xFFB51717);
 const Color mGreyEigth = Color(0xff606873);
+const Color mBackgroundColor = Color(0xffFAFAFA);
+const Color mTextColor = Color(0xff0D0D0D);
 
 const mStatusbar = Color(0xFF065532);
 

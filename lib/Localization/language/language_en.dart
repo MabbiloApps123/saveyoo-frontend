@@ -43,6 +43,7 @@ class LanguageEn extends Languages {
   String get Delivery => "Delivery";
   String get Favourites => "Favourites";
   String get Profile => "Profile";
+  String get Scan => "Scan";
 
   String get settings => "SETTINGS";
   String get Accountdetails => "Account details";
@@ -69,4 +70,7 @@ class LanguageEn extends Languages {
   String get sortby => "Sort by :";
   String get list => "List";
   String get map => "Map";
+  String get seeallmsg => "Surprise Bags we think you`ll love.";
+  String get recommendedmsg => "Recommended for you";
+  String get supermarkets => "Supermarkets";
 }
