@@ -4,6 +4,7 @@ import 'package:saveyoo/Utils/utils.dart';
 import 'package:saveyoo/Widgets/auth_form_field.dart';
 import 'package:saveyoo/Widgets/primary_button.dart';
 import 'package:saveyoo/localization/language/languages.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Utils/MyColor.dart';
 import 'bloc/login_bloc.dart';
@@ -71,8 +72,8 @@ class _LoginSuccessState extends State<LoginSuccess> {
                               height: 20,
                             ),
                             Text(Languages.of(context)!.checkmail,
-                                style: const TextStyle(
-                                  fontSize: 24,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
                                   color: mTextColor,
                                   fontFamily: "PlusJakartaSansSemiBold",
                                 )),
@@ -81,7 +82,7 @@ class _LoginSuccessState extends State<LoginSuccess> {
                             ),
                             Text(Languages.of(context)!.sentmailto,
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 12.sp,
                                   color: mGreyDisable,
                                   fontFamily: "PlusJakartaSansRegular",
                                 )),
@@ -89,8 +90,8 @@ class _LoginSuccessState extends State<LoginSuccess> {
                               height: 20,
                             ),
                             Text(widget.email,
-                                style: const TextStyle(
-                                  fontSize: 18,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
                                   color: mTextColor,
                                   fontFamily: "PlusJakartaSansSemiBold",
                                 )),
@@ -100,7 +101,7 @@ class _LoginSuccessState extends State<LoginSuccess> {
                             Text(Languages.of(context)!.checkbelowmail,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 12.sp,
                                   color: mGreyDisable,
                                   fontFamily: "PlusJakartaSansRegular",
                                 )),
@@ -132,6 +133,7 @@ class _LoginSuccessState extends State<LoginSuccess> {
                                 children: [
                                   PrimaryButton(
                                     mButtonname: Languages.of(context)!.submit,
+                                    mFontSize: 15.sp,
                                     onpressed: () {
                                       if (codeController.text.isEmpty) {
                                         ErrorToast(
@@ -163,8 +165,8 @@ class _LoginSuccessState extends State<LoginSuccess> {
                             ),
                             Text(Languages.of(context)!.notgetcode,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 18,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
                                   color: mTextColor,
                                   fontFamily: "PlusJakartaSansSemiBold",
                                 )),
@@ -177,9 +179,9 @@ class _LoginSuccessState extends State<LoginSuccess> {
                               },
                               child: Text(Languages.of(context)!.clickhere,
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     decoration: TextDecoration.underline,
-                                    fontSize: 20,
+                                    fontSize: 16.sp,
                                     color: mPrimaryColor,
                                     fontFamily: "PlusJakartaSansSemiBold",
                                   )),

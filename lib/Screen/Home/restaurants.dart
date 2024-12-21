@@ -19,7 +19,8 @@ class Restaurants extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final colorScheme = Theme.of(context).colorScheme;
-    const height = 255.0;
+    const height = 235.0;
+    // var height = 185.sp;
 
     return Column(
       children: [
@@ -30,7 +31,7 @@ class Restaurants extends StatelessWidget {
             Navigator.pushReplacementNamed(context, seeallRoute);
           },
         ),
-        Container(
+        SizedBox(
           height: height,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -38,12 +39,12 @@ class Restaurants extends StatelessWidget {
             itemBuilder: (context, index) {
               final restaurant = mProduct[index];
               return SizedBox(
-                width: size.width * 0.8,
+                width: size.width * 0.75,
                 child: RestaurantPreviewCard(restaurant: restaurant),
               );
             },
           ),
-        ),
+        )
       ],
     );
   }

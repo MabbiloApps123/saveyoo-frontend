@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
+import 'package:sizer/sizer.dart';
 
 class AuthFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -90,7 +91,7 @@ class AuthFormField extends StatelessWidget {
         readOnly: mreadOnly,
         obscureText: obscureText,
         style: TextStyle(
-            fontSize: 16,
+            fontSize: 12.sp,
             fontFamily: 'PlusJakartaSansRegular',
             color: textColor),
         decoration: InputDecoration(
@@ -105,8 +106,8 @@ class AuthFormField extends StatelessWidget {
                   )
                 : null,
             labelText: labelText,
-            labelStyle: const TextStyle(
-                fontSize: 16,
+            labelStyle: TextStyle(
+                fontSize: 12.sp,
                 fontFamily: 'PlusJakartaSansRegular',
                 color: kGray),
             hintText: hintText,

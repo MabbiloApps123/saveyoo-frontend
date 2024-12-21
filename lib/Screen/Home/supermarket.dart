@@ -19,7 +19,7 @@ class Supermarket extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final colorScheme = Theme.of(context).colorScheme;
-    const height = 225.0;
+    const height = 175.0;
 
     return Column(
       children: [

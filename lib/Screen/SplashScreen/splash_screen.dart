@@ -155,30 +155,8 @@ class _SplashScreenState extends State<SplashScreen> {
         listener: (context, state) {
           if (state is SplashLoadedState) {
             OnLoadNext();
-            // Timer(const Duration(seconds: 2), () {
-            //   // Navigate to the home screen after 3 seconds
-            //   if (mIsLogin == null) {
-            //     print("AAA");
-            //     Navigator.pushReplacementNamed(context, onboardingRoute);
-            //   } else {
-            //     if (mIsLogin) {
-            //       MaterialPageRoute(
-            //           builder: (context) => HomeScreen(
-            //             latLng: LatLng(_currentPosition!.latitude,
-            //                 _currentPosition!.longitude),
-            //             screenpostion: 0,
-            //           ));
-            //     } else {
-            //       print("CCC");
-            //       //  Navigator.pushReplacementNamed(context, onboardingRoute);
-            //       if (onboardstatus == 0) {
-            //         Navigator.pushReplacementNamed(context, onboardingRoute);
-            //       } else {
-            //         Navigator.pushReplacementNamed(context, setlocationRoute);
-            //       }
-            //     }
-            //   }
-            // });
+
+            // Navigator.pushReplacementNamed(context, loginRoute);
           }
         },
         builder: (context, state) {

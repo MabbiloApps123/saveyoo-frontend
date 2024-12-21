@@ -23,7 +23,7 @@ class LanguageEn extends Languages {
   String get mRegister => "Register";
   String get mName => "Name";
   String get menterName => "Enter your Name";
-  String get maillogin => "Sign In with OTP";
+  String get maillogin => "Continue with Email";
   String get gmaillogin => "Continue with Google";
   String get applelogin => "Continue with  Apple";
   String get Continue => "Continue";

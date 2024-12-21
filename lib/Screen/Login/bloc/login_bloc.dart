@@ -47,6 +47,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginStatus> {
         loginsuccessRoute,
         arguments: [email],
       );
+      SucessToast(
+          context: mContext, text: LoginResponse.fromJson(json).message);
     } else {
       ErrorToast(context: mContext, text: LoginResponse.fromJson(json).message);
     }
@@ -75,6 +77,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginStatus> {
       storageService.setString(Constant.MUSEREMAIL,
           LoginSuccessResponse.fromJson(json).data.emailId);
 
+      storageService.setString(Constant.MUSERID,
+          LoginSuccessResponse.fromJson(json).data.id.toString());
+
       storageService.setString(Constant.MUSERACCESSTOKEN,
           LoginSuccessResponse.fromJson(json).data.accessToken);
 
@@ -102,9 +107,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginStatus> {
       json, int? statusCode, String email) async {
     if (ResendOtpResponse.fromJson(json).statusCode == 200) {
       SucessToast(
-          context: mContext, text: LoginResponse.fromJson(json).message);
+          context: mContext, text: ResendOtpResponse.fromJson(json).message);
     } else {
-      ErrorToast(context: mContext, text: LoginResponse.fromJson(json).message);
+      ErrorToast(
+          context: mContext, text: ResendOtpResponse.fromJson(json).message);
     }
   }
 }

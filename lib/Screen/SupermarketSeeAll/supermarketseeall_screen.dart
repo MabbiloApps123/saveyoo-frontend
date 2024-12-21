@@ -15,6 +15,7 @@ import 'package:saveyoo/Screen/home_screen.dart';
 import 'package:saveyoo/Utils/constant_methods.dart';
 import 'package:saveyoo/Widgets/app_bottom_navigation.dart';
 import 'package:saveyoo/localization/language/languages.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Utils/MyColor.dart';
 import '../../Widgets/no_internet.dart';
@@ -137,7 +138,7 @@ class _SupermarketSeeallScreenState extends State<SupermarketSeeallScreen> {
                       children: [
                         IconButton(
                           icon: const Icon(
-                            size: 30,
+                            size: 24,
                             color: Colors.black,
                             Icons.arrow_back,
                           ),
@@ -154,18 +155,18 @@ class _SupermarketSeeallScreenState extends State<SupermarketSeeallScreen> {
                           },
                         ),
                         const SizedBox(
-                          width: 10,
+                          width: 5,
                         ),
                         Text(
                           Languages.of(context)!.supermarkets,
-                          style: const TextStyle(
-                            fontSize: 20,
+                          style: TextStyle(
+                            fontSize: 16.sp,
                             fontFamily: "PlusJakartaSansSemiBold",
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 16),
                     Container(
                       alignment: Alignment.centerLeft,
                       width: MediaQuery.of(context).size.width,
@@ -186,18 +187,18 @@ class _SupermarketSeeallScreenState extends State<SupermarketSeeallScreen> {
                         children: [
                           SvgPicture.asset(
                             'assets/ic_seeall_start.svg',
-                            width: 30,
-                            height: 30,
+                            width: 24,
+                            height: 24,
                             //color: isSelected ? selectedColor : color,
                           ),
-                          SizedBox(
-                            width: 20,
+                          const SizedBox(
+                            width: 10,
                           ),
                           Expanded(
                             child: Text(
                               'These are the supermarkets near you. Choose a store and see all the Surprise Bags they have.',
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 12.sp,
                                   fontFamily: "PlusJakartaSansMedium",
                                   color: mPrimaryColor),
                             ),
@@ -223,7 +224,6 @@ class _SupermarketSeeallScreenState extends State<SupermarketSeeallScreen> {
                                 location: 'Bierges',
                                 distance: '1.4 km',
                               ),
-                              SizedBox(height: 16),
                             ],
                           );
                         },
@@ -270,7 +270,7 @@ class SupermarketCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 10.0),
       // padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -288,19 +288,19 @@ class SupermarketCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   imageUrl,
-                  height: 100,
+                  height: 80,
                   width: 80,
                   fit: BoxFit.cover,
                 ),
               ),
               // Positioned Logo
-              Positioned(
-                top: 25,
+              const Positioned(
+                top: 15,
                 left: 50,
                 // Adjust this value to center horizontally
-                child: const CircleAvatar(
+                child: CircleAvatar(
                   backgroundImage: AssetImage("assets/avathar.png"),
-                  radius: 30,
+                  radius: 24,
                   backgroundColor: Colors.white,
                 ),
               ),
@@ -308,7 +308,7 @@ class SupermarketCard extends StatelessWidget {
           ),
           // Supermarket Image
 
-          const SizedBox(width: 50),
+          const SizedBox(width: 30),
           // Text and Logo Column
           Expanded(
             child: Column(
@@ -318,15 +318,14 @@ class SupermarketCard extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: const Text(
+                      child: Text(
                         "Store Name",
                         style: TextStyle(
                             fontFamily: 'PlusJakartaSansSemiBold',
-                            fontSize: 16,
+                            fontSize: 14.sp,
                             color: mTextColor),
                       ),
                     ),
-                    const SizedBox(width: 8),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -334,17 +333,17 @@ class SupermarketCard extends StatelessWidget {
                 Text(
                   "Chennai",
                   style: TextStyle(
-                      fontFamily: 'PlusJakartaSansMedium',
-                      fontSize: 14,
+                      fontFamily: 'PlusJakartaSansRegular',
+                      fontSize: 12.sp,
                       color: mGrey),
                 ),
                 const SizedBox(height: 4),
                 // Distance
-                const Text(
+                Text(
                   "4 KM",
                   style: TextStyle(
                       fontFamily: 'PlusJakartaSansRegular',
-                      fontSize: 14,
+                      fontSize: 12.sp,
                       color: mTextColor),
                 ),
               ],

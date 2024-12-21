@@ -4,6 +4,7 @@ import 'package:saveyoo/Utils/utils.dart';
 import 'package:saveyoo/Widgets/auth_form_field.dart';
 import 'package:saveyoo/Widgets/primary_button.dart';
 import 'package:saveyoo/localization/language/languages.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Utils/MyColor.dart';
 import 'bloc/login_bloc.dart';
@@ -75,8 +76,8 @@ class _LoginState extends State<Login> {
                                     ),
                                     Text(
                                       Languages.of(context)!.started,
-                                      style: const TextStyle(
-                                        fontSize: 20,
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
                                         fontFamily: "PlusJakartaSansSemiBold",
                                       ),
                                     ),
@@ -91,11 +92,7 @@ class _LoginState extends State<Login> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.1),
+                                        const SizedBox(height: 2),
                                         Align(
                                           alignment: Alignment.center,
                                           child: Padding(
@@ -125,8 +122,8 @@ class _LoginState extends State<Login> {
                                             children: [
                                               Text(
                                                 Languages.of(context)!.email,
-                                                style: const TextStyle(
-                                                  fontSize: 18,
+                                                style: TextStyle(
+                                                  fontSize: 14.sp,
                                                   fontFamily:
                                                       "PlusJakartaSansSemiBold",
                                                 ),
@@ -156,6 +153,7 @@ class _LoginState extends State<Login> {
                                         PrimaryButton(
                                             mButtonname:
                                                 Languages.of(context)!.Continue,
+                                            mFontSize: 15.sp,
                                             onpressed: () {
                                               if (emailController
                                                   .text.isEmpty) {

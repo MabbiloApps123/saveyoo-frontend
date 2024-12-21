@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:saveyoo/Utils/FontSizes.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
@@ -74,29 +75,39 @@ void ErrorToast({
   //   duration: const Duration(seconds: 2),
   // );
 
-  final snackBar = SnackBar(
-    width: 400,
-    content: Center(
-        child: Text(
-      text,
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-          fontSize: mSizeThree,
-          color: Colors.white,
-          fontFamily: 'OpenSauceSansRegular'),
-    )),
-    backgroundColor: Colors.red,
-    elevation: 1,
-    duration: const Duration(seconds: 2),
-    behavior: SnackBarBehavior.floating,
-    padding: const EdgeInsets.all(15),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(
-        Radius.circular(10),
-      ),
-    ),
+  Fluttertoast.showToast(
+    msg: "This is a toast message",
+    toastLength: Toast.LENGTH_SHORT, // Duration: SHORT or LONG
+    gravity: ToastGravity.TOP, // Position: TOP, CENTER, or BOTTOM
+    timeInSecForIosWeb: 2, // Duration for iOS and web
+    backgroundColor: Colors.red, // Background color
+    textColor: Colors.white, // Text color
+    fontSize: 16.0, // Font size
   );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+  // final snackBar = SnackBar(
+  //   width: MediaQuery.of(context).size.width - 50,
+  //   content: Center(
+  //       child: Text(
+  //     text,
+  //     textAlign: TextAlign.center,
+  //     style: const TextStyle(
+  //         fontSize: 14,
+  //         color: Colors.white,
+  //         fontFamily: 'PlusJakartaSansRegular'),
+  //   )),
+  //   backgroundColor: Colors.red,
+  //   elevation: 1,
+  //   duration: const Duration(seconds: 2),
+  //   behavior: SnackBarBehavior.floating,
+  //   padding: const EdgeInsets.all(8),
+  //   shape: const RoundedRectangleBorder(
+  //     borderRadius: BorderRadius.all(
+  //       Radius.circular(5),
+  //     ),
+  //   ),
+  // );
+  // ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
 void SucessToast({

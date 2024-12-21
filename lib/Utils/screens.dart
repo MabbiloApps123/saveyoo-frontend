@@ -10,6 +10,7 @@ const String setlocationRoute = 'setlocation';
 const String seeallRoute = 'Seeall';
 const String supermarketseeallRoute = 'supermarketseeall';
 const String productdetailsRoute = 'productdetails';
+const String storelocationpagesRoute = 'storelocationpage';
 const String browserRoute = 'browser';
 const String dashboardRoute = 'dashboard';
 const String myCoursesRoute = 'myCourses';

@@ -36,8 +36,7 @@ dependencies:
   email_validator: ^2.1.17
   shared_preferences: ^2.2.2
   geolocator: ^10.1.0
-  geocoding: ^3.0.0
-#  google_maps_flutter: ^2.1.8
+  google_maps_flutter: ^2.1.8
   flutter_localizations:
     sdk: flutter
   http: ^1.1.1
@@ -52,6 +51,9 @@ dependencies:
   flutter_svg: ^1.1.6
   permission_handler: ^10.4.0
   flutter_screenutil: ^5.9.3
+  fluttertoast: ^8.2.1
+  geocoding: ^2.0.4
+
 
 
 #flutter_icons:

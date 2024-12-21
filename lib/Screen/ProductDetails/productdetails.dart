@@ -13,8 +13,11 @@ import 'package:saveyoo/Screen/ProductDetails/bloc/productdetails_event.dart';
 import 'package:saveyoo/Screen/ProductDetails/bloc/productdetails_state.dart';
 import 'package:saveyoo/Screen/home_screen.dart';
 import 'package:saveyoo/Utils/constant_methods.dart';
+import 'package:saveyoo/Utils/screens.dart';
+import 'package:saveyoo/Widgets/SeeMoreText.dart';
 import 'package:saveyoo/Widgets/app_bottom_navigation.dart';
 import 'package:saveyoo/Widgets/primary_button.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Utils/MyColor.dart';
 import '../../Widgets/no_internet.dart';
@@ -211,21 +214,44 @@ class _ProductdetailsScreenState extends State<ProductdetailsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Title and Rating
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Icon(
-                                Icons.lock_outline,
-                                size: 18,
-                                color: mTextColor,
+                              CircleAvatar(
+                                radius: 20,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(width: 5),
-                              const Text(
-                                'Surprise Bag',
-                                style: TextStyle(
-                                    fontFamily: 'PlusJakartaSansSemiBold',
-                                    fontSize: 16,
-                                    color: mTextColor),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Restrant Name",
+                                      style: TextStyle(
+                                          fontFamily: 'PlusJakartaSansSemiBold',
+                                          fontSize: 13.sp,
+                                          color: mGrey),
+                                    ),
+                                    Text(
+                                      "Surprise Ba",
+                                      style: TextStyle(
+                                          fontFamily: 'PlusJakartaSansMedium',
+                                          fontSize: 11.sp,
+                                          color: mGrey),
+                                    ),
+                                  ],
+                                ),
                               ),
                               const Spacer(),
                               Column(
@@ -284,13 +310,13 @@ class _ProductdetailsScreenState extends State<ProductdetailsScreen> {
                                 "Collect today 4.30 PM - 5.30 PM",
                                 style: TextStyle(
                                     fontFamily: 'PlusJakartaSansMedium',
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     color: mGreyDisable),
                               ),
                               const Spacer(),
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 4),
+                                    horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   color: mPrimaryColor,
                                   borderRadius: BorderRadius.circular(12),
@@ -312,24 +338,41 @@ class _ProductdetailsScreenState extends State<ProductdetailsScreen> {
 
                           const SizedBox(height: 8),
                           // Location
-                          const ListTile(
+                          ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading:
                                 Icon(Icons.location_on, color: mPrimaryColor),
-                            title: Text(
-                              '10 Place de l\'Université Centre commercial...',
-                              style: TextStyle(
+                            trailing: InkWell(
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                    context, storelocationpagesRoute);
+                              },
+                              child: const Icon(
+                                Icons.arrow_forward_ios,
                                 color: mPrimaryColor,
-                                fontSize: 14,
-                                fontFamily: 'PlusJakartaSansMedium',
+                                size: 16,
                               ),
                             ),
-                            subtitle: Text(
-                              'More information about the store',
-                              style: TextStyle(
-                                  fontFamily: 'PlusJakartaSansRegular',
-                                  fontSize: 14,
-                                  color: mGrey),
+                            title: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '10 Place de l\'Université Centre commercial...',
+                                  style: TextStyle(
+                                    color: mPrimaryColor,
+                                    fontSize: 14,
+                                    fontFamily: 'PlusJakartaSansMedium',
+                                  ),
+                                ),
+                                SizedBox(height: 6), // Adjust the gap here
+                                Text(
+                                  'More information about the store',
+                                  style: TextStyle(
+                                      fontFamily: 'PlusJakartaSansRegular',
+                                      fontSize: 12,
+                                      color: mGrey),
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -345,13 +388,12 @@ class _ProductdetailsScreenState extends State<ProductdetailsScreen> {
                                 color: mTextColor),
                           ),
                           const SizedBox(height: 8),
-                          const Text(
-                            'Important! Pensez à l\'environnement, apportez votre propre sac pour récupérer votre portion!',
-                            style: TextStyle(
-                                fontFamily: 'PlusJakartaSansRegular',
-                                fontSize: 14,
-                                color: mGrey),
-                          ),
+                          const SeeMoreText(
+                              text:
+                                  's simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                              maxLines: 3,
+                              mTextColor: mGrey),
+
                           const SizedBox(height: 12),
                           Container(
                             padding: const EdgeInsets.symmetric(

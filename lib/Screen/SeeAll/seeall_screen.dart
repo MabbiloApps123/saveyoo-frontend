@@ -16,6 +16,7 @@ import 'package:saveyoo/Screen/home_screen.dart';
 import 'package:saveyoo/Utils/constant_methods.dart';
 import 'package:saveyoo/Widgets/app_bottom_navigation.dart';
 import 'package:saveyoo/localization/language/languages.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Utils/MyColor.dart';
 import '../../Widgets/no_internet.dart';
@@ -137,7 +138,7 @@ class _SeeallScreenState extends State<SeeallScreen> {
                       children: [
                         IconButton(
                           icon: const Icon(
-                            size: 30,
+                            size: 24,
                             color: Colors.black,
                             Icons.arrow_back,
                           ),
@@ -158,14 +159,14 @@ class _SeeallScreenState extends State<SeeallScreen> {
                         ),
                         Text(
                           Languages.of(context)!.recommendedmsg,
-                          style: const TextStyle(
-                            fontSize: 20,
+                          style: TextStyle(
+                            fontSize: 16.sp,
                             fontFamily: "PlusJakartaSansSemiBold",
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Container(
                       height: 50,
                       alignment: Alignment.centerLeft,
@@ -187,17 +188,17 @@ class _SeeallScreenState extends State<SeeallScreen> {
                         children: [
                           SvgPicture.asset(
                             'assets/ic_seeall_start.svg',
-                            width: 20,
-                            height: 20,
+                            width: 24,
+                            height: 24,
                             //color: isSelected ? selectedColor : color,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
                             Languages.of(context)!.seeallmsg,
-                            style: const TextStyle(
-                                fontSize: 16,
+                            style: TextStyle(
+                                fontSize: 12.sp,
                                 fontFamily: "PlusJakartaSansMedium",
                                 color: mPrimaryColor),
                           ),

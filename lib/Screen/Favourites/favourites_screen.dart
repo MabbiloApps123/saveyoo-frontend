@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:custom_gif_loading/custom_gif_loading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:saveyoo/Model/ProductsResponse.dart';
 import 'package:saveyoo/Screen/Favourites/bloc/favourites_bloc.dart';
 import 'package:saveyoo/Screen/Favourites/bloc/favourites_event.dart';
 import 'package:saveyoo/Screen/Favourites/bloc/favourites_state.dart';
+import 'package:saveyoo/Screen/Home/restaurant_preview_card.dart';
 import 'package:saveyoo/Screen/OnboardingScreen/size_config.dart';
-import 'package:saveyoo/Utils/MyColor.dart';
 import 'package:saveyoo/Utils/constant_methods.dart';
 
 import '../../Widgets/no_internet.dart';
@@ -22,6 +26,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   StorageService storageService = StorageService();
   bool mIsLogin = false;
   late PageController _controller;
+  var items = <Product>[];
 
   @override
   void initState() {
@@ -32,11 +37,30 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     setState(() {
       loadPrefs();
     });
+    loadUsers();
   }
 
   Future<void> loadPrefs() async {
     print("Second PAge");
     //mIsLogin = await storageService.getBool(Constant.MLOGINSTATUS) ?? false;
+  }
+
+  Future<List<ProductsResponse>> loadUsers() async {
+    try {
+      String jsonString = await rootBundle.loadString('assets/data.json');
+      Map<String, dynamic> jsonMap = json.decode(jsonString);
+
+      List<dynamic> usersJson = jsonMap['products'];
+      // List<ProductsResponse> users =
+      //     usersJson.map((json) => ProductsResponse.fromJson(json)).toList();
+      items = ProductsResponse.fromJson(jsonMap).products!;
+      print("//////");
+      print(items[0].name);
+      return [];
+    } catch (e) {
+      print('Error loading JSON: $e');
+      return []; // Return an empty list or handle as needed
+    }
   }
 
   @override
@@ -47,6 +71,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
     double height = SizeConfig.screenH!;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocConsumer<FavouritesBloc, FavouritesState>(
         listener: (context, state) {
           // if (state is GetOnboardingInfoSucessState) {}
@@ -57,20 +82,35 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
             Loading(mLoaderGif).start(context);
           } else if (state is GetFavouritesInfoSucessState) {
             Loading.stop();
-            return const SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Text("Favourites",
-                        style: const TextStyle(
-                          fontSize: 28,
-                          color: mPrimaryColor,
-                          fontFamily: "PlusJakartaSansSemiBold",
-                        )),
-                  )
-                ],
+            return SafeArea(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          final restaurant = items[index];
+                          return SizedBox(
+                            child: Column(
+                              children: [
+                                RestaurantPreviewCard(restaurant: restaurant),
+                                const SizedBox(
+                                  height: 20,
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           } else if (state is GetFavouritesNointernetState) {

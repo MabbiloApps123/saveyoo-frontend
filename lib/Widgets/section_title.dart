@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
+import 'package:sizer/sizer.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -17,38 +18,35 @@ class SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      margin: const EdgeInsets.only(bottom: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title,
-              style: const TextStyle(
-                  fontFamily: 'PlusJakartaSansSemiBold',
-                  fontSize: 16,
-                  color: mGrey)),
-          if (action != null)
-            TextButton(
-                onPressed: onPressed,
-                child: Row(
-                  children: [
-                    Text(action!,
-                        style: const TextStyle(
-                            fontFamily: 'PlusJakartaSansMedium',
-                            fontSize: 16,
-                            color: mPrimaryColor)),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 15,
-                      color: mPrimaryColor,
-                    )
-                  ],
-                )),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(title,
+            style: TextStyle(
+                fontFamily: 'PlusJakartaSansSemiBold',
+                fontSize: 13.sp,
+                color: mGrey)),
+        if (action != null)
+          TextButton(
+              onPressed: onPressed,
+              child: Row(
+                children: [
+                  Text(action!,
+                      style: TextStyle(
+                          fontFamily: 'PlusJakartaSansMedium',
+                          fontSize: 13.sp,
+                          color: mPrimaryColor)),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 15,
+                    color: mPrimaryColor,
+                  )
+                ],
+              )),
+      ],
     );
   }
 }

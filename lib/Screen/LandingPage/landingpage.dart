@@ -8,6 +8,7 @@ import 'package:saveyoo/Utils/constant_methods.dart';
 import 'package:saveyoo/Utils/screens.dart';
 import 'package:saveyoo/Widgets/icon_button.dart';
 import 'package:saveyoo/localization/language/languages.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Widgets/no_internet.dart';
 import '../../utils/pref_manager.dart';
@@ -64,24 +65,34 @@ class _LandingpageState extends State<Landingpage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconwithButton(
-                      mButtonname: Languages.of(context)!.maillogin,
-                      onpressed: () {
-                        Navigator.pushReplacementNamed(context, loginRoute);
-                      },
-                      icon: 'assets/ic_mail.png',
-                      mSelectcolor: mPrimaryColor,
-                      mTextColor: Colors.white,
-                    ),
+                        mButtonname: Languages.of(context)!.maillogin,
+                        onpressed: () {
+                          Navigator.pushReplacementNamed(context, loginRoute);
+                        },
+                        icon: 'assets/ic_mail.png',
+                        mSelectcolor: mPrimaryColor,
+                        mTextColor: Colors.white,
+                        mFontSize: 14.sp),
                     const SizedBox(
                       height: 30,
                     ),
                     IconwithButton(
-                      mButtonname: Languages.of(context)!.gmaillogin,
-                      onpressed: () {},
-                      icon: 'assets/ic_google.png',
-                      mSelectcolor: mPrimaryColor,
-                      mTextColor: Colors.white,
+                        mButtonname: Languages.of(context)!.gmaillogin,
+                        onpressed: () {},
+                        icon: 'assets/ic_google.png',
+                        mSelectcolor: mPrimaryColor,
+                        mTextColor: Colors.white,
+                        mFontSize: 14.sp),
+                    const SizedBox(
+                      height: 30,
                     ),
+                    IconwithButton(
+                        mButtonname: Languages.of(context)!.applelogin,
+                        onpressed: () {},
+                        icon: 'assets/ic_apple.png',
+                        mSelectcolor: mPrimaryColor,
+                        mTextColor: Colors.white,
+                        mFontSize: 14.sp),
                     const SizedBox(
                       height: 10,
                     ),

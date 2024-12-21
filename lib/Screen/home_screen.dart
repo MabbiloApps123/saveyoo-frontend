@@ -538,13 +538,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
               case 3:
                 return BlocProvider(
+                    create: (_) => ProfileBloc(mContext: context),
+                    child: ProfileScreen());
+                break;
+              case 4:
+                return BlocProvider(
                     create: (_) => FavouritesBloc(mContext: context),
                     child: FavouritesScreen());
 
-              case 4:
-                return BlocProvider(
-                    create: (_) => ProfileBloc(mContext: context),
-                    child: ProfileScreen());
                 break;
               default:
                 return BlocProvider(

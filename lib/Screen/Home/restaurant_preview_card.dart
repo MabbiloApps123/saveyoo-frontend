@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saveyoo/Model/ProductsResponse.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
 import 'package:saveyoo/Utils/screens.dart';
+import 'package:sizer/sizer.dart';
 
 class RestaurantPreviewCard extends StatelessWidget {
   const RestaurantPreviewCard({
@@ -24,7 +25,7 @@ class RestaurantPreviewCard extends StatelessWidget {
       },
       child: Container(
         width: size.width,
-        margin: const EdgeInsets.only(bottom: 5, right: 8.0),
+        margin: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
           border: Border.all(color: mBorder, width: 1),
           borderRadius: BorderRadius.circular(8.0),
@@ -35,12 +36,12 @@ class RestaurantPreviewCard extends StatelessWidget {
             Stack(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
                       'assets/dummy.jpeg',
                       fit: BoxFit.cover,
                       width: size.width,
-                      height: 150,
+                      height: 110,
                     )
 
                     // Image.network(
@@ -50,7 +51,7 @@ class RestaurantPreviewCard extends StatelessWidget {
                     //   fit: BoxFit.cover,
                     // ),
                     ),
-                const Positioned(
+                Positioned(
                   left: 8.0,
                   child: Chip(
                     backgroundColor: mPrimaryColor,
@@ -59,8 +60,8 @@ class RestaurantPreviewCard extends StatelessWidget {
                     label: Text(
                       '2 offers available',
                       style: TextStyle(
-                          fontFamily: 'PlusJakartaSansRegular',
-                          fontSize: 12,
+                          fontFamily: 'PlusJakartaSansSemiBold',
+                          fontSize: 10.sp,
                           color: Colors.white),
                     ),
                   ),
@@ -77,8 +78,8 @@ class RestaurantPreviewCard extends StatelessWidget {
                     ),
                     label: SvgPicture.asset(
                       'assets/ic_unfavorite.svg',
-                      width: 24,
-                      height: 24,
+                      width: 20,
+                      height: 20,
                       //color: isSelected ? selectedColor : color,
                     ),
                   ),
@@ -132,23 +133,38 @@ class RestaurantPreviewCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  CircleAvatar(
+                    radius: 20,
+                    child: CircleAvatar(
+                      radius: 20,
+                      child: ClipOval(
+                        child: Image.network(
+                          "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           restaurant.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontFamily: 'PlusJakartaSansSemiBold',
-                              fontSize: 16,
+                              fontSize: 13.sp,
                               color: mGrey),
                         ),
                         Text(
-                          "Collect today 4.30 PM - 5.30 PM",
+                          restaurant.name,
                           style: TextStyle(
                               fontFamily: 'PlusJakartaSansMedium',
-                              fontSize: 14,
-                              color: mGreyDisable),
+                              fontSize: 11.sp,
+                              color: mGrey),
                         ),
                       ],
                     ),
@@ -156,7 +172,16 @@ class RestaurantPreviewCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 5),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Text(
+                "Collect today 4.30 PM - 5.30 PM",
+                style: TextStyle(
+                    fontFamily: 'PlusJakartaSansRegular',
+                    fontSize: 10.sp,
+                    color: mGreyDisable),
+              ),
+            ),
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
@@ -180,29 +205,29 @@ class RestaurantPreviewCard extends StatelessWidget {
                             const SizedBox(
                               width: 8,
                             ),
-                            const Text(
+                            Text(
                               "4.5",
                               style: TextStyle(
-                                  fontFamily: 'PlusJakartaSansSemiBold',
-                                  fontSize: 14,
+                                  fontFamily: 'PlusJakartaSansMedium',
+                                  fontSize: 11.sp,
                                   color: mGrey),
                             ),
                             const SizedBox(
                               width: 8,
                             ),
                             Container(
-                              color: mBorder,
+                              color: Colors.grey,
                               width: 2,
                               height: 15,
                             ),
                             const SizedBox(
                               width: 8,
                             ),
-                            const Text(
+                            Text(
                               "100 KM",
                               style: TextStyle(
-                                  fontFamily: 'PlusJakartaSansSemiBold',
-                                  fontSize: 14,
+                                  fontFamily: 'PlusJakartaSansMedium',
+                                  fontSize: 11.sp,
                                   color: mGrey),
                             ),
                           ],
@@ -210,15 +235,31 @@ class RestaurantPreviewCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Text("₹1000",
-                      style: TextStyle(
-                          fontFamily: 'PlusJakartaSansBold',
-                          fontSize: 18,
-                          color: mPrimaryColor))
+                  Column(
+                    children: [
+                      Text(
+                        '€15.00',
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          fontFamily: 'PlusJakartaSansRegular',
+                          color: mGreyDisable,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '€4.99',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontFamily: 'PlusJakartaSansSemiBold',
+                          color: mPrimaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: 5),
           ],
         ),
       ),

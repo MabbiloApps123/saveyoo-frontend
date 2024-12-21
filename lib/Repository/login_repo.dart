@@ -30,7 +30,7 @@ class LoginRepo {
     String email,
   ) async {
     return await sl<MyDio>()
-        .postData(endPoint: resendOTPAPI, data: {'email_id': email});
+        .postData(endPoint: resendOTPAPI, data: {'email': email});
   }
 
   Future<ApiResults> logout(

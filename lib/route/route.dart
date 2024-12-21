@@ -8,6 +8,7 @@ import 'package:saveyoo/Screen/LandingPage/bloc/landingpage_bloc.dart';
 import 'package:saveyoo/Screen/LandingPage/landingpage.dart';
 import 'package:saveyoo/Screen/Login/loginsuccess.dart';
 import 'package:saveyoo/Screen/OnboardingScreen/onboarding_screen.dart';
+import 'package:saveyoo/Screen/ProductDetails/StoreLocationPage.dart';
 import 'package:saveyoo/Screen/ProductDetails/bloc/productdetails_bloc.dart';
 import 'package:saveyoo/Screen/ProductDetails/productdetails.dart';
 import 'package:saveyoo/Screen/Register/bloc/register_bloc.dart';
@@ -152,6 +153,17 @@ class Routes {
               )
             ],
             child: const ProductdetailsScreen(),
+          ),
+        );
+      case storelocationpagesRoute:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<ProductdetailsBloc>(
+                create: (context) => ProductdetailsBloc(mContext: context),
+              )
+            ],
+            child: StoreLocationPage(),
           ),
         );
       case browserRoute:

@@ -14,9 +14,9 @@ import 'package:saveyoo/Screen/Home/supermarket.dart';
 import 'package:saveyoo/Utils/MyColor.dart';
 import 'package:saveyoo/Utils/constant_methods.dart';
 import 'package:saveyoo/Widgets/primary_button.dart';
-import 'package:saveyoo/localization/language/languages.dart';
 
 import '../../Widgets/no_internet.dart';
+import '../../localization/language/languages.dart';
 import '../../utils/pref_manager.dart';
 
 class Homepage extends StatefulWidget {
