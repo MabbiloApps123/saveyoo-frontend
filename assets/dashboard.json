@@ -1,0 +1,77 @@
+{
+  "statusCode": 200,
+  "status": true,
+  "message": "Stores retrieved successfully!",
+  "data": {
+    "just_for_you": [],
+    "last_chance_deals": [
+      {
+        "product_id": 1,
+        "store_id": 1,
+        "original_price": "15.00",
+        "discounted_price": "5.00",
+        "currency": "INR",
+        "quantity": 10,
+        "pickup_start_time": "2024-11-22T14:00:00.000Z",
+        "pickup_end_time": "2024-11-22T18:00:00.000Z",
+        "product": "Surprise Bag - Bakery",
+        "distance": 4,
+        "ratings": 4.5,
+        "store": {
+          "id": 1,
+          "name": "My Store",
+          "image_url": "http://example.com/image.jpg",
+          "category": "supermarket",
+          "open_time": "09:00",
+          "close_time": "21:00"
+        }
+      }
+    ],
+    "available_now": [
+      {
+        "product_id": 1,
+        "store_id": 1,
+        "original_price": "15.00",
+        "discounted_price": "5.00",
+        "currency": "INR",
+        "quantity": 10,
+        "pickup_start_time": "2024-11-22T14:00:00.000Z",
+        "pickup_end_time": "2024-11-22T18:00:00.000Z",
+        "product": "Surprise Bag - Bakery",
+        "distance": 4,
+        "ratings": 4.5,
+        "store": {
+          "id": 1,
+          "name": "My Store",
+          "image_url": "http://example.com/image.jpg",
+          "category": "supermarket",
+          "open_time": "09:00",
+          "close_time": "21:00"
+        }
+      }
+    ],
+    "dinnertime_deals": [
+      {
+        "product_id": 1,
+        "store_id": 1,
+        "original_price": "15.00",
+        "discounted_price": "5.00",
+        "currency": "INR",
+        "quantity": 10,
+        "pickup_start_time": "2024-11-22T14:00:00.000Z",
+        "pickup_end_time": "2024-11-22T18:00:00.000Z",
+        "product": "Surprise Bag - Bakery",
+        "distance": 4,
+        "ratings": 4.5,
+        "store": {
+          "id": 1,
+          "name": "My Store",
+          "image_url": "http://example.com/image.jpg",
+          "category": "supermarket",
+          "open_time": "09:00",
+          "close_time": "21:00"
+        }
+      }
+    ]
+  }
+}
